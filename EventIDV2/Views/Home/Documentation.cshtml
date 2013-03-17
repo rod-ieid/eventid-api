@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Help</h2>
+
+@foreach (var api in Model.ApiDescriptions)
+{
+    <h5>@api.HttpMethod @api.RelativePath</h5>
+    <p>@api.Documentation</p>
+    if(api.ParameterDescriptions.Count > 0)
+    {
+        <h6>Parameters</h6>
+        <ul>
+            @foreach (var parameter in api.ParameterDescriptions)
+            {
+                <li>@parameter.Name: @parameter.Documentation (@parameter.Source)</li>
+            }
+        </ul>
+    }
+}
